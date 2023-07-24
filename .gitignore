@@ -1,2 +1,6 @@
+.vscode/
+.git/
 *.log
+
 explore/
+examples/

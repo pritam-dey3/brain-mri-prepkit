@@ -4,12 +4,18 @@ version = "0.1.0"
 description = ""
 authors = ["pritam-dey3 <pdeypritam@gmail.com>"]
 readme = "README.md"
-packages = [{include = "brain_mri_prepkit"}]
-
-[tool.poetry.dependencies]
-python = "^3.11"
-
+packages = [{include = "src"}]
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+typer = { version = "^0.9.0", extras = ["all"] }
+nipype = "^1.4.6"
+tqdm = "^4.65.0"
+urllib3 = "1.26.16"
+
+[tool.poetry.scripts]
+prepkit = "src:app"
