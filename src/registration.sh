@@ -4,7 +4,7 @@
 export FSLOUTPUTTYPE='NIFTI'
 
 # $1 is the folder of the raw data, $2 is the filename of the raw data, $3 is output folder to save processed data
-echo "processing file from $1: $2"
+echo "processing file from $1 / $2 -> $3"
 
 cd $1
 

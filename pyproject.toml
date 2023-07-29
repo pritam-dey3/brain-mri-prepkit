@@ -5,6 +5,7 @@ description = ""
 authors = ["pritam-dey3 <pdeypritam@gmail.com>"]
 readme = "README.md"
 packages = [{include = "src"}]
+include = ["src/*.sh"]
 
 [build-system]
 requires = ["poetry-core"]

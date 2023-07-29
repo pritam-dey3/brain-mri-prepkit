@@ -20,8 +20,12 @@ def register(args: tuple[Path, Path]):
     """
     inp_file, out_folder = args
 
+    script_path = Path(__file__).parent / "registration.sh"
     p = run(
-        f"bash src/registration.sh {inp_file.parent} {inp_file.name} {out_folder}",
+        (
+            "bash"
+            f" {script_path} {inp_file.parent} {inp_file.name} {out_folder}"
+        ),
         stdout=PIPE,
         stderr=PIPE,
         text=True,
