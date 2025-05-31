@@ -1,22 +1,32 @@
-[tool.poetry]
+[project]
 name = "brain-mri-prepkit"
 version = "0.1.0"
 description = ""
-authors = ["pritam-dey3 <pdeypritam@gmail.com>"]
+authors = [{ name = "pritam-dey3", email = "pdeypritam@gmail.com" }]
+requires-python = "~=3.10"
 readme = "README.md"
-packages = [{include = "src"}]
-include = ["src/*.sh"]
+dependencies = [
+    "typer[all]>=0.16.0",
+    "nipype>=1.4.6,<2",
+    "tqdm>=4.65.0,<5",
+    "urllib3==1.26.16",
+]
+
+[project.scripts]
+prepkit = "src:app"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src",
+    "src/*.sh",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "src",
+    "src/*.sh",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.dependencies]
-python = "^3.10"
-typer = { version = "^0.9.0", extras = ["all"] }
-nipype = "^1.4.6"
-tqdm = "^4.65.0"
-urllib3 = "1.26.16"
-
-[tool.poetry.scripts]
-prepkit = "src:app"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
