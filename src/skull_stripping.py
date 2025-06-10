@@ -22,12 +22,18 @@ def strip_skull(args: tuple[Path, Path, bool]):
         mask (bool, optional): Whether to return mask of not. Defaults to True. Maked
             files will be saved in the same output folder with _mask suffix
     """
+    inp_file, out_file, mask = args
+    inp_file = inp_file.resolve().absolute()
+    assert inp_file.exists(), f"Input file {inp_file} does not exist"
+    out_file = out_file.resolve().absolute()
+    out_folder = out_file.parent
+    assert out_folder.exists(), f"Output folder {out_folder} does not exist"
     try:
-        bet = fsl.BET(in_file=args[0], out_file=args[1], mask=args[2])
+        bet = fsl.BET(in_file=inp_file, out_file=out_file, mask=mask)
         _ = bet.run()
-        logging.info(f"Skull stripping for {args[0]} done!")
+        logging.info(f"Skull stripping for {inp_file} done!")
     except Exception as e:
-        logging.error(f"Skull stripping failed for {args[0]} with error\n{e}")
+        logging.error(f"Skull stripping failed for {inp_file} with error\n{e}")
 
 
 def bulk_strip_skull(inp: Path, out: Path, mask: bool = True):

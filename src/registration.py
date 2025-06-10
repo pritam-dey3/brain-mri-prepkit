@@ -19,6 +19,10 @@ def register(args: tuple[Path, Path]):
         args (tuple[Path, Path]): Tuple of (input_file, output_folder)
     """
     inp_file, out_folder = args
+    inp_file = inp_file.resolve().absolute()
+    assert inp_file.exists(), f"Input file {inp_file} does not exist"
+    out_folder = out_folder.resolve().absolute()
+    assert out_folder.exists(), f"Output folder {out_folder} does not exist"
 
     script_path = Path(__file__).parent / "registration.sh"
     p = run(
